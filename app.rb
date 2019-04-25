@@ -4,7 +4,6 @@ require 'sqlite3'
 require 'bcrypt'
 
 enable :session
-db = SQLite3::Database.new('./blog.db')
 
 get('/') do 
     slim(:index)
@@ -20,7 +19,8 @@ end
 
 get('/login') do
     slim(:login)
-    result == db.execute("SELECT email, password FROM user")
+    db = SQLite3::Database.new('./blog.db')
+    result = db.execute("SELECT email, password FROM user")
 end
 
 post('/login') do
