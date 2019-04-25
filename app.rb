@@ -3,6 +3,8 @@ require 'sinatra'
 require 'sqlite3'
 require 'bcrypt'
 
+enable :session
+
 get('/') do 
     slim(:index)
 end
@@ -17,5 +19,11 @@ end
 
 get('/login') do
     slim(:login)
+    if  session[:Email] == "gabbie@gmail.com" and session[:password] == "hola"
+        session[:loggin] = true
+    end
 end
 
+post('/login') do
+    "You are in ^^"
+end
