@@ -4,6 +4,7 @@ require 'sqlite3'
 require 'bcrypt'
 
 enable :session
+db = SQLite3::Database.new('./blog.db')
 
 get('/') do 
     slim(:index)
@@ -14,16 +15,14 @@ get('/about') do
 end
 
 get('/sign') do
-    slim(:sign)
+    slim(:sign) 
 end
 
 get('/login') do
     slim(:login)
-    if  session[:Email] == "gabbie@gmail.com" and session[:password] == "hola"
-        session[:loggin] = true
-    end
+    result == db.execute("SELECT email, password FROM user")
 end
 
 post('/login') do
-    "You are in ^^"
+   "You are in ^^"
 end
